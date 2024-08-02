@@ -8,7 +8,7 @@ import LinearButton from './../Ui/LinearButton';
 const Login = () => {
     const [isFocused, setIsFocused] = useState('');
     return (
-        <View className="flex-1 items-center px-8 justify-center bg-[#0F0F0F] ">
+        <View className="flex-1 items-center px-6 justify-center bg-[#0F0F0F] ">
             <View className='mt-[-20]' >
                 <Image source={icon} style={{ width: 110, height: 150 }} />
             </View>
