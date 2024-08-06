@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, View } from 'react-native';
+import { Button, Image, View } from 'react-native';
 import icon from '../Icon.png'
 
 const Loader = () => {

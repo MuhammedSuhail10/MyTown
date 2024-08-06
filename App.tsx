@@ -8,14 +8,37 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from './Components/Home/Home';
 import { View } from 'react-native';
 import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg";
+import OrderDetails from './Components/Home/OrderDetails';
+import Processing from './Components/Processing/Processing';
+import SideMenu from './Components/Ui/SideMenu';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function HomeStack() {
+function HomeStack({ navigation }) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" component={Home} listeners={{
+        focus: () => {
+          navigation.setOptions({
+            tabBarStyle: {
+              height: 75,
+              backgroundColor: '#191919',
+              margin: 25,
+              borderRadius: 25,
+              shadowOpacity: 1,
+              elevation: 1,
+              borderStartWidth: 1,
+              borderEndWidth: 1,
+              borderColor: 'rgba(255, 255, 255, 0.15)',
+              paddingHorizontal: 10,
+              paddingVertical: 7,
+              paddingBottom: 7,
+            },
+          });
+        },
+      }} />
+      <Stack.Screen name="OrderPage" component={OrderDetails} options={{ headerShown: false }} listeners={{ focus: () => navigation.setOptions({ tabBarStyle: { display: 'none' } }), }} />
     </Stack.Navigator>
   );
 }
@@ -23,7 +46,15 @@ function HomeStack() {
 function LoaderStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Loader" component={Login} />
+      <Stack.Screen name="Loader" component={Loader} />
+    </Stack.Navigator>
+  );
+}
+
+function ProcessStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Process" component={Processing} />
     </Stack.Navigator>
   );
 }
@@ -33,7 +64,7 @@ function App(): React.JSX.Element {
     <View className='bg-[#0F0F0F] h-[100%] w-[100%] '>
       <SafeAreaProvider>
         <NavigationContainer >
-          <Tab.Navigator screenOptions={{ headerShown: false, tabBarStyle: { height: 75, backgroundColor: '#191919', margin: 25, borderRadius: 25, shadowOpacity: 1, elevation: 1, borderStartWidth: 1, borderEndWidth: 1, borderColor: 'rgba(255, 255, 255, 0.15)', paddingHorizontal: 10, paddingVertical: 7, paddingBottom: 7 } }}>
+          <Tab.Navigator screenOptions={({ route }) => ({ headerShown: false, tabBarStyle: (route.name === 'HomeTab' && route.state?.routes[route.state.index]?.name === 'OrderPage') ? { display: 'none' } : { height: 75, backgroundColor: '#191919', margin: 25, borderRadius: 25, shadowOpacity: 1, elevation: 1, borderStartWidth: 1, borderEndWidth: 1, borderColor: 'rgba(255, 255, 255, 0.15)', paddingHorizontal: 10, paddingVertical: 7, paddingBottom: 7 } })}>
             <Tab.Screen name="HomeTab" component={HomeStack}
               options={{
                 tabBarItemStyle: { borderRadius: 15 },
@@ -95,7 +126,7 @@ function App(): React.JSX.Element {
                   </Defs>
                 </Svg>)
               }} />
-            <Tab.Screen name="Processing" component={LoaderStack}
+            <Tab.Screen name="Processing" component={ProcessStack}
               options={{
                 tabBarItemStyle: { borderRadius: 15 },
                 tabBarLabelStyle: { color: '#fff', paddingBottom: 8, paddingTop: 5, fontSize: 10, letterSpacing: 0.3, fontFamily: 'Poppins', fontWeight: 500 },

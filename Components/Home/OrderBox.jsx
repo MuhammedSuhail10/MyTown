@@ -1,12 +1,14 @@
 import React from 'react'
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Path, Defs, LinearGradient, Stop, Line } from "react-native-svg";
 import LinearButton from './../Ui/LinearButton';
+import { useLinkTo } from '@react-navigation/native';
 
 const OrderBox = () => {
+    const linkTo = useLinkTo();
     return (
-        <View className='bg-[#191919] h-[fit] mt-[30] px-[15]' style={{ borderRadius: 15 }}>
-            <View className='bg-[#282828] my-[15] px-[5] h-[fit] rounded-lg flex justify-between items-center flex-row '>
+        <TouchableOpacity onPress={() => linkTo('/OrderPage')} className='bg-[#191919] h-[fit] mt-[30] px-[15]' style={{ borderRadius: 15 }}>
+            <View className='bg-[#282828] my-[15] px-[8] h-[fit] rounded-lg flex justify-between items-center flex-row '>
                 <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] text-[16px] tracking-wider '>#MTID00013</Text>
                 <View className='bg-[#9FFF57] flex flex-row justify-center items-center h-[30] py-[5] w-[50] my-[5] rounded-md '>
                     <Text style={{ fontFamily: 'Poppins' }} className='text-[#0f0f0f] text-[14px] font-[600] tracking-wider '>₹ 29</Text>
@@ -72,7 +74,6 @@ const OrderBox = () => {
                         </View>
                     </View>
                     <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-[#9C9C9C] tracking-wide ' >Akampadam</Text>
-                    {/* <LinearButton name='Locate' w={55} h={6} m={10} icon /> */}
                 </View>
             </View>
             <View className=' flex gap-[20] w-[100%] flex-row my-[10] ' >
@@ -135,15 +136,9 @@ const OrderBox = () => {
                         </View>
                     </View>
                     <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-[#9C9C9C] tracking-wide ' >KV house, Anappara, Society road..</Text>
-                    {/* <View className='flex flex-row '>
-                        <LinearButton name='Locate' w={32} h={6} m={10} icon />
-                        <View className='mx-3 '>
-                            <LinearButton name='Call Customer' w={85} h={6} m={10} icon />
-                        </View>
-                    </View> */}
                 </View>
             </View>
-            <View style={{ position: 'absolute',left:35,top:80,zIndex:-1 }}>
+            <View style={{ position: 'absolute', left: 35, top: 80, zIndex: -1 }}>
                 <Svg
                     width={1}
                     height={74}
@@ -162,7 +157,7 @@ const OrderBox = () => {
                     />
                 </Svg>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
