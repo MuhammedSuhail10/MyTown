@@ -10,7 +10,9 @@ import { View } from 'react-native';
 import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg";
 import OrderDetails from './Components/Home/OrderDetails';
 import Processing from './Components/Processing/Processing';
-import SideMenu from './Components/Ui/SideMenu';
+import Payments from './Components/Payments/Payments';
+import EditProfile from './Components/Profile/EditProfile';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,6 +41,8 @@ function HomeStack({ navigation }) {
         },
       }} />
       <Stack.Screen name="OrderPage" component={OrderDetails} options={{ headerShown: false }} listeners={{ focus: () => navigation.setOptions({ tabBarStyle: { display: 'none' } }), }} />
+      <Stack.Screen name="PaymentPage" component={Payments} options={{ headerShown: false }} listeners={{ focus: () => navigation.setOptions({ tabBarStyle: { display: 'none' } }), }} />
+      <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }} listeners={{ focus: () => navigation.setOptions({ tabBarStyle: { display: 'none' } }), }} />
     </Stack.Navigator>
   );
 }
@@ -55,6 +59,14 @@ function ProcessStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Process" component={Processing} />
+    </Stack.Navigator>
+  );
+}
+
+function DashStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Dash" component={Dashboard} />
     </Stack.Navigator>
   );
 }
@@ -188,7 +200,7 @@ function App(): React.JSX.Element {
                   </Defs>
                 </Svg>)
               }} />
-            <Tab.Screen name="Dashboard" component={HomeStack}
+            <Tab.Screen name="Dashboard" component={DashStack}
               options={{
                 tabBarItemStyle: { borderRadius: 15 },
                 tabBarLabelStyle: { color: '#fff', paddingBottom: 8, paddingTop: 5, fontSize: 10, letterSpacing: 0.3, fontFamily: 'Poppins', fontWeight: 500 },

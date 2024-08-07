@@ -35,13 +35,18 @@ const CheckoutButton2 = ({ swipe }) => {
     );
 }
 
-const SwipeBtn = ({ title, title2, icon, actionscript, atitle, aicon, setProgress }) => {
+const SwipeBtn = ({ title, title2, icon, actionscript, atitle, aicon,ablackbtn,ablacktitle,agradtitle,abtnicon, setProgress,progress,swiped,setSwiped }) => {
     const [swipe, setSwipe] = useState(false);
     const actionSheetRef = useRef(null);
     const handleSwipeSuccess = () => {
         setSwipe(true);
         actionSheetRef.current?.show();
-        setProgress(true)
+        if (progress) {
+            setProgress(true)
+        }
+        if (swiped) {
+            setSwiped(true)
+        }
     };
     return (
         <View className='mb-[30] w-[100%]' >
@@ -64,7 +69,7 @@ const SwipeBtn = ({ title, title2, icon, actionscript, atitle, aicon, setProgres
                     titleStyles={{ fontFamily: 'Poppins', fontSize: 13, paddingTop: 2 }}
                 />
             </LinearGradient>
-            {actionscript && <ActionSheetUi title={atitle} icon={aicon} ref={actionSheetRef} />}
+            {actionscript && <ActionSheetUi ablackbtn={ablackbtn} abtnicon={abtnicon} ablacktitle={ablacktitle} agradtitle={agradtitle} title={atitle} icon={aicon} ref={actionSheetRef} />}
         </View>
     )
 }

@@ -1,11 +1,12 @@
 import React from 'react'
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Path, Defs, Stop } from "react-native-svg";
 import ActionSheet from 'react-native-actions-sheet';
 import { Button } from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 
 const ActionSheetUi = React.forwardRef((props, ref) => {
+    const buttonWidth = props.ablackbtn ? '50%' : '100%';
     return (
         <ActionSheet ref={ref} containerStyle={{ backgroundColor: '#392323', height: 318, }}>
             <View style={{ display: 'flex', alignItems: 'center', paddingVertical: 17, height: 260, }}>
@@ -24,32 +25,31 @@ const ActionSheetUi = React.forwardRef((props, ref) => {
                         strokeLinecap="round"
                     />
                 </Svg>
-                <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] text-[16px] tracking-wider pt-[30] '>#MTID00013</Text>
+                <Text style={styles.textFont} className='text-[#D9D9D9] text-[16px] tracking-wider pt-[30] '>#MTID00013</Text>
                 <View style={{ marginTop: 45 }}>
                     {props.icon}
                 </View>
-                <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] text-[12px] tracking-wider pt-[20] '>{props.title}</Text>
+                <Text style={styles.textFont} className='text-[#D9D9D9] text-[12px] tracking-wider pt-[20] '>{props.title}</Text>
             </View>
             <View className='flex flex-row  ' style={{ height: 58 }}>
-                <Button mode="contained" className='bg-[#191919] rounded-none w-[50%] flex flex-row items-center justify-center'>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] text-[14px] tracking-wider '>Go to Orders</Text>
-                </Button>
-                <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} className='w-[50%] flex flex-row justify-center items-center h-[100%] ' colors={['#F84C38', '#FD4161']}>
-                    <Svg
-                        fill="#fff"
-                        width="15px"
-                        height="20px"
-                        viewBox="0 0 50 50"
-                        baseProfile="tiny"
-                        xmlns="http://www.w3.org/2000/svg"
-                        overflow="inherit"
-                    >
-                        <Path d="M32.517 48.107l-7.072-21.107h-22.983l44.198-24.804z" />
-                    </Svg><Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] text-[14px] pt-[3] px-[5] tracking-wider '>Locate Shop</Text>
+                {props.ablackbtn && <Button mode="contained" className='bg-[#191919] rounded-none w-[50%] flex flex-row items-center justify-center'>
+                    <Text style={styles.textFont} className='text-[#D9D9D9] text-[14px] tracking-wider '>{props.ablacktitle}</Text>
+                </Button>}
+                <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={{ width: buttonWidth }} className=' flex flex-row justify-center items-center h-[100%] ' colors={['#F84C38', '#FD4161']}>
+                    <View>
+                        {props.abtnicon}
+                    </View>
+                    <Text style={styles.textFont} className='text-[#D9D9D9] text-[14px] pt-[3] px-[5] tracking-wider '>{props.agradtitle}</Text>
                 </LinearGradient>
             </View>
         </ActionSheet>
     )
 });
+
+const styles = StyleSheet.create({
+    textFont: {
+        fontFamily: 'Poppins'
+    },
+})
 
 export default ActionSheetUi

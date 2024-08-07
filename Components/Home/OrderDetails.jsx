@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dimensions, ScrollView, Text, View, TouchableOpacity } from 'react-native';
+import { Dimensions, ScrollView, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import Svg, { Path, Defs, LinearGradient, Stop, Line } from "react-native-svg";
 import LinearButton from '../Ui/LinearButton';
 import OrderWorthBox from './OrderWorthBox';
@@ -14,8 +14,8 @@ const OrderDetails = () => {
     const { height } = Dimensions.get('window');
     return (
         <ScrollView className='bg-[#0F0F0F] h-[100%] px-5 '>
-            <View className='flex flex-row h-[30] items-center my-8 '>
-                <TouchableOpacity onPress={() => linkTo('/Home')}>
+            <View className='flex flex-row h-[100] items-center '>
+                <TouchableOpacity className=' p-[5] ' onPressIn={() => linkTo('/Home')}>
                     <Svg
                         width={24}
                         height={24}
@@ -31,12 +31,22 @@ const OrderDetails = () => {
                     </Svg>
                 </TouchableOpacity>
                 <View className='flex justify-center  w-[90%] '>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-center text-[20px] text-white '>MTID00013</Text>
+                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-center text-[20px] text-white '>MTID00013</Text>
                 </View>
             </View>
             <OrderWorthBox show={showWorth} setShow={() => setShowWorth((prevWorth) => (prevWorth ? false : true))} />
             <OrderDetailsBox show={showDetails} setShow={() => setShowDetails((prevDetails) => (prevDetails ? false : true))} />
-            <SwipeBtn title='Accept Delivery' title2='Accept Delivery' actionscript atitle='Order Accepted' aicon={<Svg
+            <SwipeBtn title='Accept Delivery' title2='Accept Delivery' actionscript atitle='Order Accepted' ablackbtn ablacktitle='Go to Orders' agradtitle='Locate Shop' abtnicon={<Svg
+                fill="#fff"
+                width="15px"
+                height="20px"
+                viewBox="0 0 50 50"
+                baseProfile="tiny"
+                xmlns="http://www.w3.org/2000/svg"
+                overflow="inherit"
+            >
+                <Path d="M32.517 48.107l-7.072-21.107h-22.983l44.198-24.804z" />
+            </Svg>} aicon={<Svg
                 width={52}
                 height={52}
                 viewBox="0 0 52 52"
@@ -69,5 +79,11 @@ const OrderDetails = () => {
         </ScrollView>
     )
 }
+
+const styles = StyleSheet.create({
+    textFont: {
+        fontFamily: 'Poppins'
+    },
+})
 
 export default OrderDetails

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Path, Defs, LinearGradient, Stop, Line } from "react-native-svg";
 import LinearButton from './../Ui/LinearButton';
 import { useLinkTo } from '@react-navigation/native';
@@ -7,11 +7,11 @@ import { useLinkTo } from '@react-navigation/native';
 const OrderBox = () => {
     const linkTo = useLinkTo();
     return (
-        <TouchableOpacity onPress={() => linkTo('/OrderPage')} className='bg-[#191919] h-[fit] mt-[30] px-[15]' style={{ borderRadius: 15 }}>
+        <TouchableOpacity onPress={() => {linkTo('/OrderPage')}} className='bg-[#191919] h-[fit] mt-[30] px-[15] rounded-lg'>
             <View className='bg-[#282828] my-[15] px-[8] h-[fit] rounded-lg flex justify-between items-center flex-row '>
-                <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] text-[16px] tracking-wider '>#MTID00013</Text>
+                <Text style={styles.textFont} className='text-[#D9D9D9] text-[16px] tracking-wider '>#MTID00013</Text>
                 <View className='bg-[#9FFF57] flex flex-row justify-center items-center h-[30] py-[5] w-[50] my-[5] rounded-md '>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[#0f0f0f] text-[14px] font-[600] tracking-wider '>₹ 29</Text>
+                    <Text style={styles.textFont} className='text-[#0f0f0f] text-[14px] font-[600] tracking-wider '>₹ 29</Text>
                 </View>
             </View>
             <View className=' flex gap-[20] flex-row' >
@@ -64,16 +64,16 @@ const OrderBox = () => {
                     </Svg>
                 </View>
                 <View>
-                    <View className='flex flex-row ' style={{ columnGap: 10 }} >
-                        <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-white tracking-[1px] font-[600] ' >Chaliyar Mall</Text>
+                    <View className='flex flex-row ' style={styles.columnG} >
+                        <Text style={styles.textFont} className='text-[14px] text-white tracking-[1px] font-[600] ' >Chaliyar Mall</Text>
                         <View className='opacity-60 bg-[#E33028] px-[7] h-[22] flex flex-row justify-center items-center rounded-lg '>
-                            <Text style={{ fontFamily: 'Poppins' }} className='text-[11px] text-[#fff] ' >1 km</Text>
+                            <Text style={styles.textFont} className='text-[11px] text-[#fff] ' >1 km</Text>
                         </View>
                         <View className='opacity-60 bg-[#E33028] px-[7] flex flex-row justify-center items-center py-[2] h-[22] rounded-lg '>
-                            <Text style={{ fontFamily: 'Poppins' }} className='text-[11px] text-[#fff] ' >15 min</Text>
+                            <Text style={styles.textFont} className='text-[11px] text-[#fff] ' >15 min</Text>
                         </View>
                     </View>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-[#9C9C9C] tracking-wide ' >Akampadam</Text>
+                    <Text style={styles.textFont} className='text-[14px] text-[#9C9C9C] tracking-wide ' >Akampadam</Text>
                 </View>
             </View>
             <View className=' flex gap-[20] w-[100%] flex-row my-[10] ' >
@@ -126,19 +126,19 @@ const OrderBox = () => {
                     </Svg>
                 </View>
                 <View>
-                    <View className='flex flex-row ' style={{ columnGap: 10 }} >
-                        <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-white tracking-[1px] font-[600] ' >Jamsheedali</Text>
+                    <View className='flex flex-row ' style={styles.columnG} >
+                        <Text style={styles.textFont} className='text-[14px] text-white tracking-[1px] font-[600] ' >Jamsheedali</Text>
                         <View className='opacity-60 bg-[#E33028] px-[7] h-[22] flex flex-row justify-center items-center rounded-lg '>
-                            <Text style={{ fontFamily: 'Poppins' }} className='text-[11px] text-[#fff] ' >2 km</Text>
+                            <Text style={styles.textFont} className='text-[11px] text-[#fff] ' >2 km</Text>
                         </View>
                         <View className='opacity-60 bg-[#E33028] px-[7] flex flex-row justify-center items-center py-[2] h-[22] rounded-lg '>
-                            <Text style={{ fontFamily: 'Poppins' }} className='text-[11px] text-[#fff] ' >30 min</Text>
+                            <Text style={styles.textFont} className='text-[11px] text-[#fff] ' >30 min</Text>
                         </View>
                     </View>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-[#9C9C9C] tracking-wide ' >KV house, Anappara, Society road..</Text>
+                    <Text style={styles.textFont} className='text-[14px] text-[#9C9C9C] tracking-wide ' >KV house, Anappara, Society road..</Text>
                 </View>
             </View>
-            <View style={{ position: 'absolute', left: 35, top: 80, zIndex: -1 }}>
+            <View className='absolute left-[35] top-[80] z-[-1] '>
                 <Svg
                     width={1}
                     height={74}
@@ -160,5 +160,14 @@ const OrderBox = () => {
         </TouchableOpacity>
     )
 }
+
+const styles = StyleSheet.create({
+    textFont:{
+        fontFamily: 'Poppins'
+    },
+    columnG:{
+        columnGap:10
+    }
+})
 
 export default OrderBox

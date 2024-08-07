@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import Svg, { Path, Defs, Stop } from "react-native-svg";
 import LinearButton from './LinearButton';
 
@@ -8,7 +8,7 @@ const SuccessPage = () => {
         <View className='bg-[#0F0F0F] h-[100%] px-5 '>
             <View className='flex justify-center items-center h-[100%] '>
                 <View className='flex justify-center items-center h-[30%] '>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] text-[32px] font-[600]  tracking-wider '>Success</Text>
+                    <Text style={styles.textFont} className='text-[#D9D9D9] text-[32px] font-[600]  tracking-wider '>Success</Text>
                 </View>
                 <View className='flex items-center h-[55%] '>
 
@@ -478,8 +478,8 @@ const SuccessPage = () => {
                         />
                     </Svg>
                     <View className='mt-[50] text-center'>
-                        <Text style={{ fontFamily: 'Poppins' }} className=' text-center text-[#F7F7F7] text-[16px] tracking-wider '>#MTID00013</Text>
-                        <Text style={{ fontFamily: 'Poppins' }} className=' text-center text-[#F7F7F7] text-[14px] tracking-wider '>Order Delivered Successfully</Text>
+                        <Text style={styles.textFont} className=' text-center text-[#F7F7F7] text-[16px] tracking-wider '>#MTID00013</Text>
+                        <Text style={styles.textFont} className=' text-center text-[#F7F7F7] text-[14px] tracking-wider '>Order Delivered Successfully</Text>
                     </View>
                 </View>
                 <LinearButton name='Go to Orders' w={100} h={15} m={0} icon='null' />
@@ -487,5 +487,11 @@ const SuccessPage = () => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    textFont: {
+        fontFamily: 'Poppins'
+    },
+})
 
 export default SuccessPage

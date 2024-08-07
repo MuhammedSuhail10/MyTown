@@ -1,16 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Path, Defs, LinearGradient, Stop, Line } from "react-native-svg";
 import LinearButton from '../Ui/LinearButton';
 
 const OrderWorthBox = ({ show, setShow }) => {
     return (
-        <View className='bg-[#191919] h-[fit] mt-[-10] px-[12]' style={{ borderRadius: 15 }}>
+        <View className='bg-[#191919] h-[fit] mt-[-10] px-[12] rounded-xl'>
             <View className='bg-[#282828] my-[15] px-[8] h-[fit] rounded-lg flex justify-between items-center flex-row '>
                 <View className=' rounded-lg flex items-center flex-row '>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] pt-[2.5] text-[16px] tracking-wider '>Order Worth</Text>
+                    <Text style={styles.textFont} className='text-[#D9D9D9] pt-[2.5] text-[16px] tracking-wider '>Order Worth</Text>
                     <View className='bg-[#9FFF57] flex flex-row justify-center items-center h-[30] py-[5] mx-[10] w-[50] my-[5] rounded-md '>
-                        <Text style={{ fontFamily: 'Poppins' }} className='text-[#0f0f0f] text-[14px] font-[600] tracking-wider '>₹ 29</Text>
+                        <Text style={styles.textFont} className='text-[#0f0f0f] text-[14px] font-[600] tracking-wider '>₹ 29</Text>
                     </View>
                 </View>
                 <Svg onPress={setShow}
@@ -75,15 +75,15 @@ const OrderWorthBox = ({ show, setShow }) => {
                 </View>
                 <View>
                     <View className='flex flex-row ' style={{ columnGap: 10 }} >
-                        <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-white tracking-[1px] font-[600] ' >Chaliyar Mall</Text>
+                        <Text style={styles.textFont} className='text-[14px] text-white tracking-[1px] font-[600] ' >Chaliyar Mall</Text>
                         <View className='opacity-60 bg-[#E33028] px-[7] h-[22] flex flex-row justify-center items-center rounded-lg '>
-                            <Text style={{ fontFamily: 'Poppins' }} className='text-[11px] text-[#fff] ' >1 km</Text>
+                            <Text style={styles.textFont} className='text-[11px] text-[#fff] ' >1 km</Text>
                         </View>
                         <View className='opacity-60 bg-[#E33028] px-[7] flex flex-row justify-center items-center py-[2] h-[22] rounded-lg '>
-                            <Text style={{ fontFamily: 'Poppins' }} className='text-[11px] text-[#fff] ' >15 min</Text>
+                            <Text style={styles.textFont} className='text-[11px] text-[#fff] ' >15 min</Text>
                         </View>
                     </View>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-[#9C9C9C] tracking-wide ' >Akampadam</Text>
+                    <Text style={styles.textFont} className='text-[14px] text-[#9C9C9C] tracking-wide ' >Akampadam</Text>
                     <LinearButton name='Locate' w={48} h={6} m={10} icon='locate' />
                 </View>
             </View>
@@ -138,27 +138,27 @@ const OrderWorthBox = ({ show, setShow }) => {
                     </View>
                     <View className='mb-[10] '>
                         <View className='flex flex-row ' style={{ columnGap: 10 }} >
-                            <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-white tracking-[1px] font-[600] ' >Jamsheedali</Text>
+                            <Text style={styles.textFont} className='text-[14px] text-white tracking-[1px] font-[600] ' >Jamsheedali</Text>
                             <View className='opacity-60 bg-[#E33028] px-[7] h-[22] flex flex-row justify-center items-center rounded-lg '>
-                                <Text style={{ fontFamily: 'Poppins' }} className='text-[11px] text-[#fff] ' >2 km</Text>
+                                <Text style={styles.textFont} className='text-[11px] text-[#fff] ' >2 km</Text>
                             </View>
                             <View className='opacity-60 bg-[#E33028] px-[7] flex flex-row justify-center items-center py-[2] h-[22] rounded-lg '>
-                                <Text style={{ fontFamily: 'Poppins' }} className='text-[11px] text-[#fff] ' >30 min</Text>
+                                <Text style={styles.textFont} className='text-[11px] text-[#fff] ' >30 min</Text>
                             </View>
                         </View>
-                        <Text style={{ fontFamily: 'Poppins' }} className='text-[14px] text-[#9C9C9C] tracking-wide ' >KV house, Anappara, Society road..</Text>
+                        <Text style={styles.textFont} className='text-[14px] text-[#9C9C9C] tracking-wide ' >KV house, Anappara, Society road..</Text>
                         <View className='flex flex-row '>
                             <LinearButton name='Locate' w={32} h={6} m={10} icon='locate' />
                             <View className='mx-3 '>
-                                <LinearButton name='Call Customer' w={83} h={6} m={10} icon='phone'  />
+                                <LinearButton name='Call Customer' w={83} h={6} m={10} icon='phone' />
                             </View>
                         </View>
                     </View>
                 </View>
-                <View style={{ position: 'absolute', left: 30, top: 100, zIndex: -1 }}>
+                <View className='absolute left-[32] top-[80] z-[-1] '>
                     <Svg
-                        width={5}
-                        height={120}
+                        width={2}
+                        height={150}
                         viewBox="0 0 1 74"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -177,5 +177,11 @@ const OrderWorthBox = ({ show, setShow }) => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    textFont: {
+        fontFamily: 'Poppins'
+    },
+})
 
 export default OrderWorthBox

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button, Divider } from 'react-native-paper';
 import Svg, { Path, Defs, LinearGradient, Stop, Line } from "react-native-svg";
 import StepIndicatorPage from '../Ui/StepIndicatorPage';
@@ -21,7 +21,7 @@ const OrderStatus = ({ show, setShow,progress }) => {
                             fill="#878787"
                         />
                     </Svg>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] pt-[2.5] px-[8] text-[16px] tracking-wider '>Order Status</Text>
+                    <Text style={styles.textFont} className='text-[#D9D9D9] pt-[2.5] px-[8] text-[16px] tracking-wider '>Order Status</Text>
                 </View>
                 <Svg onPress={setShow}
                     fill="#D9D9D9"
@@ -53,12 +53,18 @@ const OrderStatus = ({ show, setShow,progress }) => {
                             />
                         </Svg></View>
                         <View className='mt-[5] ml-[10] '>
-                            <Text style={{ fontFamily: 'Poppins' }} className='text-[#0F0F0F] text-[14px] tracking-wider '>Amount Paid through UPI</Text>
+                            <Text style={styles.textFont} className='text-[#0F0F0F] text-[14px] tracking-wider '>Amount Paid through UPI</Text>
                         </View>
                     </View>
                 </View></>}
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    textFont: {
+        fontFamily: 'Poppins'
+    },
+})
 
 export default OrderStatus

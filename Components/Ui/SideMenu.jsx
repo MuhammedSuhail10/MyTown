@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, heet, Switch, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import SwipeButton from 'rn-swipe-button';
 import Svg, { Path, Defs, Stop, Mask, G } from "react-native-svg";
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import SwipeBtn from './SwipeBtn';
+import { useLinkTo } from '@react-navigation/native';
 
 const CheckoutButton = ({ swipe }) => {
     return (
@@ -58,30 +57,11 @@ const SideMenu = () => {
         setSwipe(true);
     };
     const [isEnabled, setIsEnabled] = useState(true);
-
+    const linkTo = useLinkTo();
     return (
         <View className='bg-[#191919] flex h-[100%] py-[35] px-[25] '>
             <View className='bg-[#0F0F0F] rounded-md h-[160] flex items-center pt-[10] '>
                 <View className='w-[150] mb-[10] '>
-                    {/* <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={[swipe ? '#fc435a' : '#6c757d', swipe ? '#f84c39' : '#121416',]} style={{ borderStartWidth: 1.5, borderEndWidth: 1, borderTopWidth: 1, borderColor: 'rgba(255, 255, 255, 0.15)', borderRadius: 35, marginTop: 30, height: 50, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <SwipeButton
-                            containerStyles={{ borderRadius: 30, display: 'flex', marginLeft: 6, borderWidth: 0, justifyContent: 'center', alignItems: 'center' }}
-                            height={40}
-                            width='99%'
-                            // onSwipeFail={() => updateSwipeStatusMessage('Incomplete swipe!')}
-                            onSwipeStart={() => setSwipe(false)}
-                            onSwipeSuccess={handleSwipeSuccess}
-                            railBackgroundColor="transparent"
-                            railFillBackgroundColor='transparent'
-                            railStyles={{ borderRadius: 30, borderWidth: 0 }}
-                            thumbIconComponent={swipe ? CheckoutButton2 : CheckoutButton}
-                            thumbIconStyles={{ borderRadius: 30, borderWidth: 0 }}
-                            thumbIconWidth={40}
-                            title= {swipe ?'ON' : 'OFF'}
-                            titleColor='#f8f9fa'
-                            titleStyles={{ fontFamily: 'Poppins', fontSize: 13, paddingTop: 2 }}
-                        />
-                    </LinearGradient> */}
                     <SwipeBtn title='Off' title2='On' icon={<Svg
                         width={32}
                         height={32}
@@ -98,10 +78,16 @@ const SideMenu = () => {
                         />
                     </Svg>} />
                 </View>
-                <View className='flex flex-row mt-[-30] '><Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-center text-[16px] text-[#F94940] '>Live:</Text><Text style={{ fontFamily: 'Poppins', fontWeight: 900 }} className=' tracking-wider text-center text-[16px] text-white px-1'>5</Text><Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-center text-[16px] text-white '>hr</Text><Text style={{ fontFamily: 'Poppins', fontWeight: 900 }} className='text-[Poppins] tracking-wider text-center text-[16px] text-white '> 31</Text><Text style={{ fontFamily: 'Poppins' }} className='tracking-wider text-center text-[16px] text-white '> min</Text></View>
+                <View className='flex flex-row mt-[-30] '>
+                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-center text-[16px] text-[#F94940] '>Live:</Text>
+                    <Text style={[styles.textFont,styles.fontW]} className=' tracking-wider text-center text-[16px] text-white px-1'>5</Text>
+                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-center text-[16px] text-white '>hr</Text>
+                    <Text style={[styles.textFont,styles.fontW]} className='text-[Poppins] tracking-wider text-center text-[16px] text-white '> 31</Text>
+                    <Text style={styles.textFont} className='tracking-wider text-center text-[16px] text-white '> min</Text>
+                </View>
             </View>
             <ScrollView className='mt-[25] '>
-                <TouchableOpacity style={{ marginVertical: 15, display: 'flex', flexDirection: 'row', columnGap: 15, }}>
+                <TouchableOpacity onPress={() => linkTo('/EditProfile')} style={styles.touchableUi}>
                     <Svg
                         width={28}
                         height={28}
@@ -132,9 +118,9 @@ const SideMenu = () => {
                             />
                         </G>
                     </Svg>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Edit Profile</Text>
+                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Edit Profile</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginVertical: 15, display: 'flex', flexDirection: 'row', columnGap: 15, }}>
+                <TouchableOpacity onPress={() => linkTo('/PaymentPage')} style={styles.touchableUi}>
                     <Svg
                         width={28}
                         height={28}
@@ -173,9 +159,9 @@ const SideMenu = () => {
                             />
                         </G>
                     </Svg>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Payments</Text>
+                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Payments</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginVertical: 15, display: 'flex', flexDirection: 'row', columnGap: 15, }}>
+                <TouchableOpacity style={styles.touchableUi}>
                     <Svg
                         width={28}
                         height={28}
@@ -209,9 +195,9 @@ const SideMenu = () => {
                             />
                         </G>
                     </Svg>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>My Ratings</Text>
+                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>My Ratings</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginVertical: 15, display: 'flex', flexDirection: 'row', columnGap: 15, }}>
+                <TouchableOpacity style={styles.touchableUi}>
                     <Svg
                         width={28}
                         height={28}
@@ -250,9 +236,9 @@ const SideMenu = () => {
                             />
                         </G>
                     </Svg>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Helps & FAQs?</Text>
+                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Helps & FAQs?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginVertical: 15, display: 'flex', flexDirection: 'row', columnGap: 15, }}>
+                <TouchableOpacity style={styles.touchableUi}>
                     <Svg
                         width={28}
                         height={28}
@@ -287,9 +273,9 @@ const SideMenu = () => {
                             />
                         </G>
                     </Svg>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Settings</Text>
+                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Settings</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginVertical: 15, display: 'flex', flexDirection: 'row', columnGap: 15, }}>
+                <TouchableOpacity style={styles.touchableUi}>
                     <Svg
                         width={28}
                         height={28}
@@ -324,10 +310,10 @@ const SideMenu = () => {
                             />
                         </G>
                     </Svg>
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Language</Text>
+                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Language</Text>
                 </TouchableOpacity>
             </ScrollView>
-            <TouchableOpacity style={{ marginVertical: 15, display: 'flex', flexDirection: 'row', columnGap: 15, }}>
+            <TouchableOpacity style={styles.touchableUi}>
                 <Svg
                     width={28}
                     height={28}
@@ -362,10 +348,22 @@ const SideMenu = () => {
                         />
                     </G>
                 </Svg>
-                <Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Logout</Text>
+                <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-[20px] text-[#F7F7F7] '>Logout</Text>
             </TouchableOpacity>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    textFont: {
+        fontFamily: 'Poppins'
+    },
+    touchableUi: {
+        marginVertical: 15, display: 'flex', flexDirection: 'row', columnGap: 15
+    },
+    fontW:{
+        fontWeight: 900
+    }
+})
 
 export default SideMenu;

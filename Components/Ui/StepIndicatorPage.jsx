@@ -1,14 +1,15 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, Dimensions } from 'react-native';
 import { Icon, MD3Colors, ProgressBar } from 'react-native-paper';
 import StepIndicator from 'react-native-step-indicator';
 import Svg, { Path, Defs, LinearGradient, Stop, Line } from "react-native-svg";
 import LinearButton from './LinearButton';
 
 const StepIndicatorPage = ({ progress }) => {
+    const { width } = Dimensions.get('window');
     return (
         <>
-            <View className='flex flex-row justify-between'>
+            <View className='flex flex-row justify-between '>
                 <View className='flex flex-row justify-start w-[45%]'>
                     {progress >= 0.12 ? <Svg
                         width={18}
@@ -54,11 +55,11 @@ const StepIndicatorPage = ({ progress }) => {
                             strokeOpacity={0.12}
                         />
                     </Svg>}
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] px-[15] text-[14px] tracking-wider '>Confirmed</Text>
+                    <Text style={styles.textFont} className='text-[#D9D9D9] px-[10] text-[14px] tracking-wider '>Confirmed</Text>
                 </View>
-                <View className=' mt-[-15] w-[100%] '><LinearButton name='Locate Shop' w={55} h={3} m={10} icon='locate' /></View>
+                <View className=' mt-[-15] w-[100%] px-[15] '><LinearButton name='Locate Shop' w={58} h={3} m={10} icon='locate' /></View>
             </View>
-            <View className='mt-[35] flex flex-row'>
+            <View className='mt-[35] flex flex-row '>
                 {progress >= 0.24 ? <Svg
                     width={18}
                     height={18}
@@ -103,10 +104,10 @@ const StepIndicatorPage = ({ progress }) => {
                         strokeOpacity={0.12}
                     />
                 </Svg>}
-                <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] px-[15] text-[14px] tracking-wider '>Picked</Text>
+                <Text style={styles.textFont} className='text-[#D9D9D9] px-[10] text-[14px] tracking-wider '>Picked</Text>
             </View>
-            <View className='mt-[35]  flex flex-row'>
-                <View className='flex flex-row justify-start w-[45%]'>
+            <View className='mt-[35]  flex flex-row justify-between'>
+                <View className='flex flex-row justify-start w-[42%]'>
                     {progress >= 0.36 ? <Svg
                         width={18}
                         height={18}
@@ -151,11 +152,11 @@ const StepIndicatorPage = ({ progress }) => {
                             strokeOpacity={0.12}
                         />
                     </Svg>}
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] px-[15] text-[14px] tracking-wider '>On the Way</Text>
+                    <Text style={styles.textFont} className='text-[#D9D9D9] px-[10] text-[14px] tracking-wider '>On the Way</Text>
                 </View>
-                <View className='w-[100%] mt-[-15] '><LinearButton name='Locate Customer' w={55} h={3} m={10} icon='locate' /></View>
+                <View className='w-[100%] mt-[-15]'><LinearButton name='Locate Customer' w={62} h={3} m={10} icon='locate' /></View>
             </View>
-            <View className='mt-[35]  flex flex-row'>
+            <View className='mt-[35]  flex flex-row justify-between'>
                 <View className='flex flex-row justify-start w-[45%]'>
                     {progress >= 0.48 ? <Svg
                         width={18}
@@ -201,9 +202,9 @@ const StepIndicatorPage = ({ progress }) => {
                             strokeOpacity={0.12}
                         />
                     </Svg>}
-                    <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] px-[15] text-[14px] tracking-wider '>At Door-Step</Text>
+                    <Text style={styles.textFont} className='text-[#D9D9D9] px-[10] text-[14px] tracking-wider '>At Door-Step</Text>
                 </View>
-                <View className='w-[100%] mt-[-15] '><LinearButton name='Call Customer' w={55} h={3} m={10} icon='phone' /></View>
+                <View className='w-[100%] mt-[-15] px-[15] '><LinearButton name='Call Customer' w={60} h={3} m={10} icon='phone' /></View>
             </View>
             <View className='mt-[35]  flex flex-row'>
                 {progress >= 0.60 ? <Svg
@@ -250,14 +251,19 @@ const StepIndicatorPage = ({ progress }) => {
                         strokeOpacity={0.12}
                     />
                 </Svg>}
-                <Text style={{ fontFamily: 'Poppins' }} className='text-[#D9D9D9] px-[15] text-[14px] tracking-wider '>Delivered</Text>
+                <Text style={styles.textFont} className='text-[#D9D9D9] px-[10] text-[14px] tracking-wider '>Delivered</Text>
             </View>
             <View className='rotate-90 absolute top-[140] left-[-106] z-[-1] '>
-                <ProgressBar style={{ width: 250, backgroundColor: '#353535' }} progress={progress*2} theme={{ colors: { primary: '#53AE38' } }} />
+                <ProgressBar style={{ width: 250, backgroundColor: '#353535' }} progress={progress * 2} theme={{ colors: { primary: '#53AE38' } }} />
             </View>
         </>
     );
 };
 
+const styles = StyleSheet.create({
+    textFont: {
+        fontFamily: 'Poppins'
+    },
+})
 
 export default StepIndicatorPage;

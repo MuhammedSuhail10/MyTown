@@ -1,142 +1,107 @@
 import React, { useState } from 'react'
 import icon from '../Icon.png'
-import { Alert, Button, Image, ScrollView, Text, View, TouchableOpacity, TouchableWithoutFeedback, Modal } from 'react-native';
-import SwipeButton from 'rn-swipe-button';
+import { Alert, Button, Image, ScrollView, Text, View,  TouchableWithoutFeedback, Modal, Dimensions, Pressable, StyleSheet } from 'react-native';
 import Svg, { Path, Defs, Stop } from "react-native-svg";
-import LinearGradient from 'react-native-linear-gradient';
 import OrderBox from './OrderBox';
 import SideMenu from '../Ui/SideMenu';
-
-const CheckoutButton = ({ swipe }) => {
-    return (
-        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} className='w-[100%] h-[fit] py-[16] px-[20] ' colors={['#fc435a', '#fc435a', '#f84c39']}>
-            <Svg
-                width={32}
-                height={32}
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <Path
-                    d="M17.3333 22.6668L24 16.0002L17.3333 9.3335M8 22.6668L14.6667 16.0002L8 9.3335"
-                    stroke="white"
-                    strokeWidth={1.5}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-            </Svg>
-        </LinearGradient>
-    );
-}
-
-const CheckoutButton2 = ({ swipe }) => {
-    return (
-        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} className='w-[100%] h-[fit] py-[18] px-[20] ' colors={['#37B737', '#37B737', '#37B737']}>
-            <Svg
-                width="30px"
-                height="30px"
-                strokeWidth={1.5}
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                color="#fff"
-            >
-                <Path
-                    d="M5 13L9 17L19 7"
-                    stroke="#fff"
-                    strokeWidth={1.5}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-            </Svg>
-        </LinearGradient>
-    );
-}
+import SwipeBtn from '../Ui/SwipeBtn';
 
 const Home = () => {
     const [swipe, setSwipe] = useState(false);
+    const { height } = Dimensions.get('window');
     const [open, setOpen] = useState(false);
     return (
         <View style={{ flex: 1 }}>
             <Modal transparent={true} visible={open} onRequestClose={() => setOpen(false)} animationType="fade" >
-            <TouchableWithoutFeedback onPress={() => setOpen(false)}>
+                <TouchableWithoutFeedback className=' p-[5] ' onPress={() => setOpen(false)}>
                     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }}>
                         <TouchableWithoutFeedback>
-                            <View style={{ position: 'absolute', width: '80%', height: '100%', backgroundColor: '#1E1E1E' }}>
+                            <View className='absolute w-[80%] h-[100%] bg-[#1e1e1e] '>
                                 <SideMenu />
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
                 </TouchableWithoutFeedback>
             </Modal>
-            <ScrollView className='bg-[#0F0F0F] h-[100%] px-5 '>
-                {swipe ? <><View className='flex flex-row h-[30] items-center my-8 '>
-                    <Svg onPress={() => setOpen(true)}
-                        width="20px"
-                        height="20px"
-                        strokeWidth={1.5}
-                        viewBox="0 0 24 24"
+            {swipe ? <ScrollView className='bg-[#0F0F0F] h-[100%] px-5 '>
+                <View className='flex flex-row h-[30] items-center my-8 '>
+                    <Pressable onPress={() => setOpen(true)}>
+                        <Svg
+                            width="20px"
+                            height="20px"
+                            strokeWidth={1.5}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            color="#fff"
+                        >
+                            <Path
+                                d="M3 5H21"
+                                stroke="#fff"
+                                strokeWidth={1.5}
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <Path
+                                d="M3 12H21"
+                                stroke="#fff"
+                                strokeWidth={1.5}
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <Path
+                                d="M3 19H21"
+                                stroke="#fff"
+                                strokeWidth={1.5}
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </Svg>
+                    </Pressable>
+                    <View className='flex justify-center  w-[90%] '>
+                        <Text style={styles.textFont} className='text-[Poppins] text-center text-[20px] text-white '>New Orders</Text>
+                    </View>
+                </View>
+                <View className='mt-[-30] w-[100%] '>
+                    <OrderBox />
+                    <OrderBox />
+                    <OrderBox />
+                    <OrderBox />
+                </View>
+            </ScrollView> : <View style={{ height: height }} className=' flex items-center justify-center flex-column bg-[#0F0F0F] h-[100%] px-5 '><View style={{ height: height - (height / 2) }} className=' flex items-center justify-center flex-column ' >
+                <Image source={icon} style={styles.img} />
+            </View>
+                <View style={{ height: height / 2, width: '100%' }} className=' flex items-center justify-start flex-column '>
+                    <Text className='text-center text-white text-[28px] ' style={styles.textFont}>{swipe ? 'Welcome Again' : 'Turn On'}</Text>
+                    <Text className='text-center pb-[30] text-[13.5px] text-[##adb5bd]' style={styles.textFont}>{swipe ? "Starting your day in 3s" : 'Slide to Start Delivery'}</Text>
+                    <SwipeBtn swiped={true} setSwiped={() => setSwipe(true)} title='Accept Delivery' title2='Starting your day in 3s' icon={<Svg
+                        width={32}
+                        height={32}
+                        viewBox="0 0 32 32"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
-                        color="#fff"
                     >
                         <Path
-                            d="M3 5H21"
-                            stroke="#fff"
+                            d="M17.3333 22.6668L24 16.0002L17.3333 9.3335M8 22.6668L14.6667 16.0002L8 9.3335"
+                            stroke="white"
                             strokeWidth={1.5}
                             strokeLinecap="round"
                             strokeLinejoin="round"
                         />
-                        <Path
-                            d="M3 12H21"
-                            stroke="#fff"
-                            strokeWidth={1.5}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <Path
-                            d="M3 19H21"
-                            stroke="#fff"
-                            strokeWidth={1.5}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </Svg>
-                    <View className='flex justify-center  w-[90%] '>
-                        <Text style={{ fontFamily: 'Poppins' }} className='text-[Poppins] text-center text-[20px] text-white '>New Orders</Text>
-                    </View></View>
-                    <View className='mt-[-30] w-[100%] '>
-                        <OrderBox />
-                        <OrderBox />
-                    </View>
-                </> : <View className=' flex items-center justify-center h-[100%] pt-[150] '><View className='' >
-                    <Image source={icon} style={{ width: 130, height: 170 }} />
-                </View>
-                    <View className='mt-[230]' >
-                        <Text className='text-center text-white ' style={{ fontFamily: 'Poppins', fontSize: 25 }}>{swipe ? 'Welcome Again' : 'Turn On'}</Text>
-                        <Text className='text-center ' style={{ fontFamily: 'Poppins', fontSize: 13.5, color: '#adb5bd' }}>{swipe ? "Starting your day in 3s" : 'Slide to Start Delivery'}</Text>
-                        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={[swipe ? '#fc435a' : '#6c757d', swipe ? '#f84c39' : '#121416',]} style={{ borderStartWidth: 1.5, borderEndWidth: 1, borderTopWidth: 1, borderColor: 'rgba(255, 255, 255, 0.15)', borderRadius: 35, marginTop: 30, height: 70, width: 340, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <SwipeButton
-                                containerStyles={{ borderRadius: 30, display: 'flex', marginLeft: 6, borderWidth: 0, justifyContent: 'center', alignItems: 'center' }}
-                                height={60}
-                                width={330}
-                                // onSwipeFail={() => updateSwipeStatusMessage('Incomplete swipe!')}
-                                onSwipeStart={() => setSwipe(false)}
-                                onSwipeSuccess={() => setSwipe(true)}
-                                railBackgroundColor="transparent"
-                                railFillBackgroundColor='transparent'
-                                railStyles={{ borderRadius: 30, borderWidth: 0 }}
-                                thumbIconComponent={swipe ? CheckoutButton2 : CheckoutButton}
-                                thumbIconStyles={{ borderRadius: 30, borderWidth: 0 }}
-                                thumbIconWidth={60}
-                                title={swipe ? "Starting your day in 3s" : 'Slide to Start Delivery'}
-                                titleColor='#f8f9fa'
-                                titleStyles={{ fontFamily: 'Poppins', fontSize: 13, paddingTop: 2 }}
-                            /></LinearGradient>
-                    </View></View>}
-            </ScrollView >
-        </View>
+                    </Svg>} />
+                </View></View>}
+        </View >
     )
 }
+
+const styles = StyleSheet.create({
+    textFont:{
+        fontFamily: 'Poppins'
+    },
+    img:{
+        width:130,
+        height:170
+    }
+})
 
 export default Home
