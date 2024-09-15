@@ -5,8 +5,8 @@ import { View } from 'react-native'
 
 const SwipeBtns = ({ progress, setProgress }) => {
     return (
-        <View className='mt-[-15] '>
-            <SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Picked Delivery' title2='Slide if Picked Delivery' actionscript atitle='Order is on the way' ablackbtn ablacktitle='Cancel' agradtitle='Locate Customer' abtnicon={<Svg
+        <View className='mt-[1] '>
+            {progress==0.12 && <SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Picked Delivery' title2='Slide if Picked' actionscript atitle='Order is on the way' ablackbtn ablacktitle='Cancel' agradtitle='Locate Customer' abtnicon={<Svg
                 fill="#fff"
                 width="15px"
                 height="20px"
@@ -62,8 +62,8 @@ const SwipeBtns = ({ progress, setProgress }) => {
                     d="M16.4209 16.3773V29.1422L29.1411 22.739V9.97461L16.4209 16.3773Z"
                     fill="white"
                 />
-            </Svg>} />
-            <SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Reached Doorstep' title2='Slide if Reached Doorstep' actionscript atitle='Order at Doorstep' ablackbtn ablacktitle='Done' agradtitle='Call Customer' abtnicon={<Svg
+            </Svg>} />}
+            {progress==0.24 &&<SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Reached Doorstep' title2='Slide if Reached Doorstep' actionscript atitle='Order at Doorstep' ablackbtn ablacktitle='Done' agradtitle='Call Customer' abtnicon={<Svg
                 width="16px"
                 height="20px"
                 viewBox="0 0 24 24"
@@ -127,8 +127,8 @@ const SwipeBtns = ({ progress, setProgress }) => {
                     d="M15.6 4H2.83249C2.60237 4.0108 2.38583 4.11208 2.23003 4.28178C2.07423 4.45148 1.99179 4.67587 2.00065 4.90607V28.0749C1.99179 28.3051 2.07423 28.5295 2.23003 28.6992C2.38583 28.8689 2.60237 28.9702 2.83249 28.981H15.6C15.8302 28.9702 16.0467 28.8689 16.2025 28.6992C16.3583 28.5295 16.4407 28.3051 16.4319 28.0749V4.90607C16.4407 4.67587 16.3583 4.45148 16.2025 4.28178C16.0467 4.11208 15.8302 4.0108 15.6 4ZM6.43822 20.5825H3.80767V19.2029H6.43758V20.5832L6.43822 20.5825ZM14.0925 15.386H4.34069V6.63823H14.0925V15.386Z"
                     fill="white"
                 />
-            </Svg>} />
-            <SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Order Delivered' title2='Slide if Order Delivered' actionscript atitle='Cash on Delivery' agradtitle='Collect Cash  250 Rs' abtnicon={<Svg
+            </Svg>} />}
+            {progress==0.36 &&<SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Order Delivered' title2='Slide if Order Delivered' actionscript atitle='Cash on Delivery' agradtitle='Collect Cash  250 Rs' abtnicon={<Svg
                 width={13}
                 height={18}
                 viewBox="0 0 13 18"
@@ -173,8 +173,8 @@ const SwipeBtns = ({ progress, setProgress }) => {
                     d="M29.0254 15.8653C28.6411 15.6094 28.2413 15.3777 27.8282 15.1717C27.5255 15.0229 27.1838 14.9725 26.8511 15.0276C26.5183 15.0826 26.2111 15.2404 25.9725 15.4788L21.8485 19.6022C21.474 19.9788 21.0285 20.2774 20.5379 20.4807C20.0473 20.684 19.5212 20.788 18.9901 20.7867H12.4409V19.1697H19.5436V15.9357H10.5494C10.0164 15.9347 9.48849 16.0395 8.99621 16.2439C8.50393 16.4483 8.05708 16.7483 7.6815 17.1265L2 22.808L7.9944 28.8024L12.7762 24.0206H18.9952C19.9482 24.023 20.8922 23.8364 21.7725 23.4715C22.6528 23.1067 23.4521 22.5708 24.1239 21.8949C25.8176 20.2184 28.015 18.0185 29.5968 16.4367L29.0254 15.8653Z"
                     fill="white"
                 />
-            </Svg>} />
-            <SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Collected Cash' title2='Slide if Collected Cash' icon={<Svg
+            </Svg>} />}
+            {progress==0.48 && <SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Collected Cash' title2='Slide if Collected Cash' icon={<Svg
                 width={32}
                 height={32}
                 viewBox="0 0 32 32"
@@ -189,7 +189,7 @@ const SwipeBtns = ({ progress, setProgress }) => {
                     d="M29.0254 15.8653C28.6411 15.6094 28.2413 15.3777 27.8282 15.1717C27.5255 15.0229 27.1838 14.9725 26.8511 15.0276C26.5183 15.0826 26.2111 15.2404 25.9725 15.4788L21.8485 19.6022C21.474 19.9788 21.0285 20.2774 20.5379 20.4807C20.0473 20.684 19.5212 20.788 18.9901 20.7867H12.4409V19.1697H19.5436V15.9357H10.5494C10.0164 15.9347 9.48849 16.0395 8.99621 16.2439C8.50393 16.4483 8.05708 16.7483 7.6815 17.1265L2 22.808L7.9944 28.8024L12.7762 24.0206H18.9952C19.9482 24.023 20.8922 23.8364 21.7725 23.4715C22.6528 23.1067 23.4521 22.5708 24.1239 21.8949C25.8176 20.2184 28.015 18.0185 29.5968 16.4367L29.0254 15.8653Z"
                     fill="white"
                 />
-            </Svg>} />
+            </Svg>} />}
         </View>
     )
 }

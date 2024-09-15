@@ -68,12 +68,12 @@ const Home = () => {
                     <OrderBox />
                     <OrderBox />
                 </View>
-            </ScrollView> : <View style={{ height: height }} className=' flex items-center justify-center flex-column bg-[#0F0F0F] h-[100%] px-5 '><View style={{ height: height - (height / 2) }} className=' flex items-center justify-center flex-column ' >
+            </ScrollView> : <View style={{ height: height }} className=' flex items-center justify-center flex-column bg-[#0F0F0F] h-[100%] px-5 '><View style={{ height: height /2 }} className=' flex items-center justify-center flex-column ' >
                 <Image source={icon} style={styles.img} />
             </View>
                 <View style={{ height: height / 2, width: '100%' }} className=' flex items-center justify-start flex-column '>
                     <Text className='text-center text-white text-[28px] ' style={styles.textFont}>{swipe ? 'Welcome Again' : 'Turn On'}</Text>
-                    <Text className='text-center pb-[30] text-[13.5px] text-[##adb5bd]' style={styles.textFont}>{swipe ? "Starting your day in 3s" : 'Slide to Start Delivery'}</Text>
+                    <Text className='text-center pb-[30] text-[13.5px] text-[#adb5bd]' style={styles.textFont}>{swipe ? "Starting your day in 3s" : 'Slide to Start Delivery'}</Text>
                     <SwipeBtn swiped={true} setSwiped={() => setSwipe(true)} title='Accept Delivery' title2='Starting your day in 3s' icon={<Svg
                         width={32}
                         height={32}

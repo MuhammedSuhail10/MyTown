@@ -13,13 +13,14 @@ import Processing from './Components/Processing/Processing';
 import Payments from './Components/Payments/Payments';
 import EditProfile from './Components/Profile/EditProfile';
 import Dashboard from './Components/Dashboard/Dashboard';
+import SuccessPage from './Components/Ui/SuccessPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function HomeStack({ navigation }) {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Loader" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} listeners={{
         focus: () => {
           navigation.setOptions({
@@ -40,6 +41,7 @@ function HomeStack({ navigation }) {
           });
         },
       }} />
+      <Stack.Screen name="Loader" component={Loader} options={{ headerShown: false }} listeners={{ focus: () => navigation.setOptions({ tabBarStyle: { display: 'none' } }), }} />
       <Stack.Screen name="OrderPage" component={OrderDetails} options={{ headerShown: false }} listeners={{ focus: () => navigation.setOptions({ tabBarStyle: { display: 'none' } }), }} />
       <Stack.Screen name="PaymentPage" component={Payments} options={{ headerShown: false }} listeners={{ focus: () => navigation.setOptions({ tabBarStyle: { display: 'none' } }), }} />
       <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }} listeners={{ focus: () => navigation.setOptions({ tabBarStyle: { display: 'none' } }), }} />
@@ -55,10 +57,30 @@ function LoaderStack() {
   );
 }
 
-function ProcessStack() {
+function ProcessStack({ navigation }) {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Process" component={Processing} />
+    <Stack.Navigator initialRouteName="Process" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Process" component={Processing} listeners={{
+        focus: () => {
+          navigation.setOptions({
+            tabBarStyle: {
+              height: 75,
+              backgroundColor: '#191919',
+              margin: 25,
+              borderRadius: 25,
+              shadowOpacity: 1,
+              elevation: 1,
+              borderStartWidth: 1,
+              borderEndWidth: 1,
+              borderColor: 'rgba(255, 255, 255, 0.15)',
+              paddingHorizontal: 10,
+              paddingVertical: 7,
+              paddingBottom: 7,
+            },
+          });
+        },
+      }} />
+      <Stack.Screen name="Success" component={SuccessPage} options={{ headerShown: false }} listeners={{ focus: () => navigation.setOptions({ tabBarStyle: { display: 'none' } }), }} />
     </Stack.Navigator>
   );
 }
@@ -76,7 +98,7 @@ function App(): React.JSX.Element {
     <View className='bg-[#0F0F0F] h-[100%] w-[100%] '>
       <SafeAreaProvider>
         <NavigationContainer >
-          <Tab.Navigator screenOptions={({ route }) => ({ headerShown: false, tabBarStyle: (route.name === 'HomeTab' && route.state?.routes[route.state.index]?.name === 'OrderPage') ? { display: 'none' } : { height: 75, backgroundColor: '#191919', margin: 25, borderRadius: 25, shadowOpacity: 1, elevation: 1, borderStartWidth: 1, borderEndWidth: 1, borderColor: 'rgba(255, 255, 255, 0.15)', paddingHorizontal: 10, paddingVertical: 7, paddingBottom: 7 } })}>
+          <Tab.Navigator screenOptions={({ route }) => ({ headerShown: false, tabBarStyle: (route.name === 'HomeTab' && route.state?.routes[route.state.index]?.name === 'OrderPage') || (route.name === 'Processing' && route.state?.routes[route.state.index]?.name === 'Success') ? { display: 'none' } : { height: 75, backgroundColor: '#191919', margin: 25, borderRadius: 25, shadowOpacity: 1, elevation: 1, borderStartWidth: 1, borderEndWidth: 1, borderColor: 'rgba(255, 255, 255, 0.15)', paddingHorizontal: 10, paddingVertical: 7, paddingBottom: 7 } })}>
             <Tab.Screen name="HomeTab" component={HomeStack}
               options={{
                 tabBarItemStyle: { borderRadius: 15 },
@@ -138,7 +160,16 @@ function App(): React.JSX.Element {
                   </Defs>
                 </Svg>)
               }} />
-            <Tab.Screen name="Processing" component={ProcessStack}
+            <Tab.Screen name="Processing"
+              listeners={({ navigation }) => ({
+                tabPress: (e) => {
+                  e.preventDefault();
+                  navigation.navigate('Processing', {
+                    screen: 'Process',
+                  });
+                },
+              })}
+              component={ProcessStack}
               options={{
                 tabBarItemStyle: { borderRadius: 15 },
                 tabBarLabelStyle: { color: '#fff', paddingBottom: 8, paddingTop: 5, fontSize: 10, letterSpacing: 0.3, fontFamily: 'Poppins', fontWeight: 500 },
@@ -280,7 +311,7 @@ function App(): React.JSX.Element {
           </Tab.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
-    </View>
+    </View >
   )
 }
 

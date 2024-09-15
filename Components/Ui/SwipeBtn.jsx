@@ -1,77 +1,196 @@
 import React, { useRef, useState } from 'react';
-import { View } from 'react-native';
+import { View, Text, Animated, PanResponder, StyleSheet, Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import SwipeButton from 'rn-swipe-button';
-import Svg, { Path, Defs, Stop } from "react-native-svg";
+import { Svg, Path } from 'react-native-svg';
 import ActionSheetUi from './ActionSheetUi';
 
-const CheckoutButton = ({ icon }) => {
-    return (
-        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} className='w-[100%] h-[fit] py-[16] px-[20] ' colors={['#fc435a', '#fc435a', '#f84c39']}>{icon}</LinearGradient>
-    );
-}
+const { width } = Dimensions.get('window');
+const SWIPE_THRESHOLD = width - 115; // Adjusted to leave padding
 
-const CheckoutButton2 = ({ swipe }) => {
-    return (
-        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} className='w-[100%] h-[fit] py-[18] px-[20] ' colors={['#37B737', '#37B737', '#37B737']}>
-            <Svg
-                width="30px"
-                height="30px"
+const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+
+const CheckoutButton = ({ icon }) => (
+    <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={['#fc435a', '#fc435a', '#f84c39']}
+        style={styles.checkoutButton}
+    >
+        {icon}
+    </LinearGradient>
+);
+
+const CheckoutButton2 = () => (
+    <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={['#37B737', '#37B737', '#37B737']}
+        style={styles.checkoutButton2}
+    >
+        <Svg
+            width="30px"
+            height="30px"
+            strokeWidth={1.5}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            color="#fff"
+        >
+            <Path
+                d="M5 13L9 17L19 7"
+                stroke="#fff"
                 strokeWidth={1.5}
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                color="#fff"
-            >
-                <Path
-                    d="M5 13L9 17L19 7"
-                    stroke="#fff"
-                    strokeWidth={1.5}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-            </Svg>
-        </LinearGradient>
-    );
-}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </Svg>
+    </LinearGradient>
+);
 
-const SwipeBtn = ({ title, title2, icon, actionscript, atitle, aicon,ablackbtn,ablacktitle,agradtitle,abtnicon, setProgress,progress,swiped,setSwiped }) => {
+const SwipeBtn = ({
+    title,
+    title2,
+    icon,
+    actionscript,
+    atitle,
+    aicon,
+    ablackbtn,
+    ablacktitle,
+    agradtitle,
+    abtnicon,
+    setProgress,
+    progress,
+    swiped,
+    setSwiped
+}) => {
     const [swipe, setSwipe] = useState(false);
     const actionSheetRef = useRef(null);
+    const translateX = useRef(new Animated.Value(0)).current;
+
     const handleSwipeSuccess = () => {
         setSwipe(true);
         actionSheetRef.current?.show();
         if (progress) {
-            setProgress(true)
+            setProgress(true);
         }
         if (swiped) {
-            setSwiped(true)
+            setSwiped(true);
+            console.log('object')
         }
     };
-    return (
-        <View className='mb-[30] w-[100%]' >
-            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={[swipe ? '#fc435a' : '#6c757d', swipe ? '#f84c39' : '#121416',]} style={{ borderStartWidth: 1.5, borderEndWidth: 1, borderTopWidth: 1, borderColor: 'rgba(255, 255, 255, 0.15)', borderRadius: 35, marginTop: 30, height: 70, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <SwipeButton
-                    containerStyles={{ borderRadius: 30, display: 'flex', marginLeft: 8, borderWidth: 0, justifyContent: 'center', alignItems: 'center' }}
-                    height={55}
-                    width='99%'
-                    // onSwipeFail={() => updateSwipeStatusMessage('Incomplete swipe!')}
-                    onSwipeStart={() => setSwipe(false)}
-                    onSwipeSuccess={handleSwipeSuccess}
-                    railBackgroundColor="transparent"
-                    railFillBackgroundColor='transparent'
-                    railStyles={{ borderRadius: 30, borderWidth: 0 }}
-                    thumbIconComponent={swipe ? () => <CheckoutButton2 /> : () => <CheckoutButton icon={icon} />}
-                    thumbIconStyles={{ borderRadius: 30, borderWidth: 0 }}
-                    thumbIconWidth={55}
-                    title={swipe ? title2 : title}
-                    titleColor='#f8f9fa'
-                    titleStyles={{ fontFamily: 'Poppins', fontSize: 13, paddingTop: 2 }}
-                />
-            </LinearGradient>
-            {actionscript && <ActionSheetUi ablackbtn={ablackbtn} abtnicon={abtnicon} ablacktitle={ablacktitle} agradtitle={agradtitle} title={atitle} icon={aicon} ref={actionSheetRef} />}
-        </View>
-    )
-}
 
-export default SwipeBtn
+    const panResponder = useRef(
+        PanResponder.create({
+            onStartShouldSetPanResponder: () => true,
+            onPanResponderMove: (_, gestureState) => {
+                const { dx } = gestureState;
+                if (dx >= 0 && dx <= SWIPE_THRESHOLD) {
+                    translateX.setValue(dx);
+                }
+            },
+            onPanResponderRelease: (_, gestureState) => {
+                const { dx } = gestureState;
+                if (dx > SWIPE_THRESHOLD * 0.5) {
+                    Animated.timing(translateX, {
+                        toValue: width - 115,
+                        duration: 200,
+                        useNativeDriver: true,
+                    }).start(() => handleSwipeSuccess());
+                } else {
+                    Animated.spring(translateX, {
+                        toValue: 0,
+                        useNativeDriver: true,
+                    }).start();
+                }
+            },
+        })
+    ).current;
+
+    const backgroundInterpolation = translateX.interpolate({
+        inputRange: [0, SWIPE_THRESHOLD],
+        outputRange: [0, 1],
+        extrapolate: 'clamp',
+    });
+
+    return (
+        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={[swipe ? '#fc435a' : '#6c757d', swipe ? '#f84c39' : '#121416',]} style={styles.container}>
+            <AnimatedLinearGradient
+                colors={['#fc435a', '#f84c39']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={[styles.gradient, { opacity: backgroundInterpolation, }]}
+            />
+            <Text style={styles.text}>{swipe ? title2 : title}</Text>
+            <Animated.View
+                style={[
+                    styles.button,
+                    {
+                        transform: [{ translateX }],
+                    },
+                ]}
+                {...panResponder.panHandlers}
+            >
+                {swipe ? <CheckoutButton2 /> : <CheckoutButton icon={icon} />}
+            </Animated.View>
+            {actionscript && (
+                <ActionSheetUi
+                    ablackbtn={ablackbtn}
+                    abtnicon={abtnicon}
+                    ablacktitle={ablacktitle}
+                    agradtitle={agradtitle}
+                    title={atitle}
+                    icon={aicon}
+                    ref={actionSheetRef}
+                />
+            )}
+        </LinearGradient>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        marginBottom: 30,
+        width: '100%',
+        height: 70,
+        borderRadius: 35,
+        overflow: 'hidden',
+        justifyContent: 'center',
+        borderWidth: 0.25,
+        borderColor: '#fff',
+    },
+    gradient: {
+        ...StyleSheet.absoluteFillObject,
+    },
+    text: {
+        color: '#f8f9fa',
+        fontSize: 13,
+        fontFamily: 'Poppins',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    button: {
+        position: 'absolute',
+        left: 5,
+        width: 55,
+        height: 55,
+        borderRadius: 27.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    checkoutButton: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 27.5,
+    },
+    checkoutButton2: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 27.5,
+    },
+});
+
+export default SwipeBtn;
