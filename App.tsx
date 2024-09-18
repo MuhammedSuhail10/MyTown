@@ -95,10 +95,10 @@ function DashStack() {
 
 function App(): React.JSX.Element {
   return (
-    <View className='bg-[#0F0F0F] h-[100%] w-[100%] '>
+    <View className='bg-[#0F0F0F] h-[100%] w-[100%]  '>
       <SafeAreaProvider>
         <NavigationContainer >
-          <Tab.Navigator screenOptions={({ route }) => ({ headerShown: false, tabBarStyle: (route.name === 'HomeTab' && route.state?.routes[route.state.index]?.name === 'OrderPage') || (route.name === 'Processing' && route.state?.routes[route.state.index]?.name === 'Success') ? { display: 'none' } : { height: 75, backgroundColor: '#191919', margin: 25, borderRadius: 25, shadowOpacity: 1, elevation: 1, borderStartWidth: 1, borderEndWidth: 1, borderColor: 'rgba(255, 255, 255, 0.15)', paddingHorizontal: 10, paddingVertical: 7, paddingBottom: 7 } })}>
+          <Tab.Navigator screenOptions={({ route }) => ({ headerShown: false, tabBarStyle: (route.name === 'HomeTab' && route.state?.routes[route.state.index]?.name === 'OrderPage') || (route.name === 'Processing' && route.state?.routes[route.state.index]?.name === 'Success') ? { display: 'none' } : { height: 75, backgroundColor: '#191919',  borderRadius: 25, shadowOpacity: 1, elevation: 1, borderStartWidth: 1, borderEndWidth: 1, borderColor: 'rgba(255, 255, 255, 0.15)', paddingHorizontal: 10, paddingVertical: 7, paddingBottom: 7,marginBottom:20 } })}>
             <Tab.Screen name="HomeTab" component={HomeStack}
               options={{
                 tabBarItemStyle: { borderRadius: 15 },

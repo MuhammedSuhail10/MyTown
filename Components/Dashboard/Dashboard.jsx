@@ -21,7 +21,7 @@ const Dashboard = () => {
                     </View>
                 </TouchableWithoutFeedback>
             </Modal>
-            <View>
+            <View className="mb-3">
                 <View className='flex flex-row h-[30] items-center my-8 '>
                     <TouchableHighlight onPress={() => setOpen(true)}>
                         <Svg
