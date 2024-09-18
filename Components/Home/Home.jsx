@@ -74,7 +74,7 @@ const Home = () => {
                 <View style={{ height: height / 2, width: '100%' }} className=' flex items-center justify-start flex-column '>
                     <Text className='text-center text-white text-[28px] ' style={styles.textFont}>{swipe ? 'Welcome Again' : 'Turn On'}</Text>
                     <Text className='text-center pb-[30] text-[13.5px] text-[#adb5bd]' style={styles.textFont}>{swipe ? "Starting your day in 3s" : 'Slide to Start Delivery'}</Text>
-                    <SwipeBtn swiped={true} setSwiped={() => setSwipe(true)} title='Accept Delivery' title2='Starting your day in 3s' icon={<Svg
+                    <SwipeBtn swiped={true} width={350} setSwiped={() => setSwipe(true)} title='Accept Delivery' title2='Starting your day in 3s' icon={<Svg
                         width={32}
                         height={32}
                         viewBox="0 0 32 32"

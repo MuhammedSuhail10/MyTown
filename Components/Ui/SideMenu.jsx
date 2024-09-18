@@ -60,9 +60,9 @@ const SideMenu = () => {
     const linkTo = useLinkTo();
     return (
         <View className='bg-[#191919] flex h-[100%] py-[35] px-[25] '>
-            <View className='bg-[#0F0F0F] rounded-md h-[160] flex items-center pt-[10] '>
-                <View className='w-[150] mb-[10] '>
-                    <SwipeBtn title='Off' title2='On' icon={<Svg
+            <View className='bg-[#0F0F0F] rounded-md h-[160] flex items-center justify-center pt-[10] '>
+                <View className='w-[200] mb-[10] mt-[10] '>
+                    <SwipeBtn title='Off' width={200} title2='On' icon={<Svg
                         width={32}
                         height={32}
                         viewBox="0 0 32 32"
@@ -78,7 +78,7 @@ const SideMenu = () => {
                         />
                     </Svg>} />
                 </View>
-                <View className='flex flex-row mt-[-30] '>
+                <View className='flex flex-row mt-[-10] '>
                     <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-center text-[16px] text-[#F94940] '>Live:</Text>
                     <Text style={[styles.textFont,styles.fontW]} className=' tracking-wider text-center text-[16px] text-white px-1'>5</Text>
                     <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-center text-[16px] text-white '>hr</Text>

@@ -5,8 +5,8 @@ import { View } from 'react-native'
 
 const SwipeBtns = ({ progress, setProgress }) => {
     return (
-        <View className='mt-[1] '>
-            {progress==0.12 && <SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Picked Delivery' title2='Slide if Picked' actionscript atitle='Order is on the way' ablackbtn ablacktitle='Cancel' agradtitle='Locate Customer' abtnicon={<Svg
+        <View className='mt-[-30] '>
+            {progress == 0.12 && <SwipeBtn width={350} progress={progress} setProgress={() => setProgress()} title='Slide if Picked Delivery' title2='Slide if Picked' actionscript atitle='Order is on the way' ablackbtn ablacktitle='Cancel' agradtitle='Locate Customer' abtnicon={<Svg
                 fill="#fff"
                 width="15px"
                 height="20px"
@@ -63,7 +63,7 @@ const SwipeBtns = ({ progress, setProgress }) => {
                     fill="white"
                 />
             </Svg>} />}
-            {progress==0.24 &&<SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Reached Doorstep' title2='Slide if Reached Doorstep' actionscript atitle='Order at Doorstep' ablackbtn ablacktitle='Done' agradtitle='Call Customer' abtnicon={<Svg
+            {progress == 0.24 && <SwipeBtn width={350} progress={progress} setProgress={() => setProgress()} title='Slide if Reached Doorstep' title2='Slide if Reached Doorstep' actionscript atitle='Order at Doorstep' ablackbtn ablacktitle='Done' agradtitle='Call Customer' abtnicon={<Svg
                 width="16px"
                 height="20px"
                 viewBox="0 0 24 24"
@@ -128,7 +128,7 @@ const SwipeBtns = ({ progress, setProgress }) => {
                     fill="white"
                 />
             </Svg>} />}
-            {progress==0.36 &&<SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Order Delivered' title2='Slide if Order Delivered' actionscript atitle='Cash on Delivery' agradtitle='Collect Cash  250 Rs' abtnicon={<Svg
+            {progress == 0.36 && <SwipeBtn width={350} progress={progress} setProgress={() => setProgress()} title='Slide if Order Delivered' title2='Slide if Order Delivered' actionscript atitle='Cash on Delivery' agradtitle='Collect Cash  250 Rs' abtnicon={<Svg
                 width={13}
                 height={18}
                 viewBox="0 0 13 18"
@@ -174,7 +174,7 @@ const SwipeBtns = ({ progress, setProgress }) => {
                     fill="white"
                 />
             </Svg>} />}
-            {progress==0.48 && <SwipeBtn progress={progress} setProgress={() => setProgress()} title='Slide if Collected Cash' title2='Slide if Collected Cash' icon={<Svg
+            {progress == 0.48 && <SwipeBtn width={350} progress={progress} setProgress={() => setProgress()} title='Slide if Collected Cash' title2='Slide if Collected Cash' icon={<Svg
                 width={32}
                 height={32}
                 viewBox="0 0 32 32"

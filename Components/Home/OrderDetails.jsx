@@ -37,7 +37,7 @@ const OrderDetails = () => {
             <OrderWorthBox show={showWorth} setShow={() => setShowWorth((prevWorth) => (prevWorth ? false : true))} />
             <OrderDetailsBox show={showDetails} setShow={() => setShowDetails((prevDetails) => (prevDetails ? false : true))} />
             <View className='mt-[10]'>
-                <SwipeBtn title='Accept Delivery' title2='Accept Delivery' actionscript atitle='Order Accepted' ablackbtn ablacktitle='Go to Orders' agradtitle='Locate Shop' abtnicon={<Svg
+                <SwipeBtn title='Accept Delivery' width={350} title2='Accept Delivery' actionscript atitle='Order Accepted' ablackbtn ablacktitle='Go to Orders' agradtitle='Locate Shop' abtnicon={<Svg
                     fill="#fff"
                     width="15px"
                     height="20px"

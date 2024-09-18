@@ -107,7 +107,7 @@ const Processing = () => {
                 </View >
             </ScrollView>
             <View className='h-[6%] flex  justify-center '>
-                <SwipeBtns progress={progress} setProgress={() => setProgress(progress + 0.12)} />
+                <SwipeBtns width={350} progress={progress} setProgress={() => setProgress(progress + 0.12)} />
             </View>
         </View>
     )
