@@ -27,7 +27,7 @@ function HomeStack({ navigation }) {
             tabBarStyle: {
               height: 75,
               backgroundColor: '#191919',
-              margin: 25,
+              marginBottom:20,
               borderRadius: 25,
               shadowOpacity: 1,
               elevation: 1,
@@ -66,7 +66,7 @@ function ProcessStack({ navigation }) {
             tabBarStyle: {
               height: 75,
               backgroundColor: '#191919',
-              margin: 25,
+              marginBottom:20,
               borderRadius: 25,
               shadowOpacity: 1,
               elevation: 1,
