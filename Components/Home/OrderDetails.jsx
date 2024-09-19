@@ -12,31 +12,34 @@ const OrderDetails = () => {
     const [showWorth, setShowWorth] = useState(true);
     const [showDetails, setShowDetails] = useState(false);
     const { height } = Dimensions.get('window');
+    const h = height - 100;
     return (
         <ScrollView className='bg-[#0F0F0F] h-[100%] px-5 '>
-            <View className='flex flex-row h-[100] items-center '>
-                <TouchableOpacity className=' p-[5] ' onPressIn={() => linkTo('/Home')}>
-                    <Svg
-                        width={24}
-                        height={24}
-                        viewBox="0 0 1024 1024"
-                        className="icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <Path fill="#fff" d="M224 480h640a32 32 0 110 64H224a32 32 0 010-64z" />
-                        <Path
-                            fill="#fff"
-                            d="M237.248 512l265.408 265.344a32 32 0 01-45.312 45.312l-288-288a32 32 0 010-45.312l288-288a32 32 0 1145.312 45.312L237.248 512z"
-                        />
-                    </Svg>
-                </TouchableOpacity>
-                <View className='flex justify-center  w-[90%] '>
-                    <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-center text-[20px] text-white '>MTID00013</Text>
+            <ScrollView style={{ height: height - 100,marginBottom:10 }}>
+                <View className='flex flex-row h-[100] items-center '>
+                    <TouchableOpacity className=' p-[5] ' onPressIn={() => linkTo('/Home')}>
+                        <Svg
+                            width={24}
+                            height={24}
+                            viewBox="0 0 1024 1024"
+                            className="icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <Path fill="#fff" d="M224 480h640a32 32 0 110 64H224a32 32 0 010-64z" />
+                            <Path
+                                fill="#fff"
+                                d="M237.248 512l265.408 265.344a32 32 0 01-45.312 45.312l-288-288a32 32 0 010-45.312l288-288a32 32 0 1145.312 45.312L237.248 512z"
+                            />
+                        </Svg>
+                    </TouchableOpacity>
+                    <View className='flex justify-center  w-[90%] '>
+                        <Text style={styles.textFont} className='text-[Poppins] tracking-wider text-center text-[20px] text-white '>MTID00013</Text>
+                    </View>
                 </View>
-            </View>
-            <OrderWorthBox show={showWorth} setShow={() => setShowWorth((prevWorth) => (prevWorth ? false : true))} />
-            <OrderDetailsBox show={showDetails} setShow={() => setShowDetails((prevDetails) => (prevDetails ? false : true))} />
-            <View className='mt-[10]'>
+                <OrderWorthBox show={showWorth} setShow={() => setShowWorth((prevWorth) => (prevWorth ? false : true))} />
+                <OrderDetailsBox show={showDetails} setShow={() => setShowDetails((prevDetails) => (prevDetails ? false : true))} />
+            </ScrollView>
+            <View className=' flex flex-row justify-center'>
                 <SwipeBtn title='Accept Delivery' width={350} title2='Accept Delivery' actionscript atitle='Order Accepted' ablackbtn ablacktitle='Go to Orders' agradtitle='Locate Shop' abtnicon={<Svg
                     fill="#fff"
                     width="15px"

@@ -79,8 +79,8 @@ const Processing = () => {
                     <OrderStatus progress={progress} show={showStatus} setShow={() => setShowStatus((prevWorth) => (prevWorth ? false : true))} />
                 </View >
             </ScrollView>
-            <View className='h-[6%] flex  justify-center '>
-                <SwipeBtns width={350} progress={progress} setProgress={() => setProgress(progress + 0.12)} />
+            <View className='h-[6%] flex  justify-center items-center '>
+                <SwipeBtns progress={progress} setProgress={() => setProgress(progress + 0.12)} />
             </View>
         </View>
     )

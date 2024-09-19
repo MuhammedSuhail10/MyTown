@@ -62,7 +62,7 @@ const Home = () => {
                         <Text style={styles.textFont} className='text-[Poppins] text-center text-[20px] text-white '>New Orders</Text>
                     </View>
                 </View>
-                <View className='mt-[-30] w-[100%] '>
+                <View className='mt-[-30] w-[100%] mb-3 '>
                     <OrderBox />
                     <OrderBox />
                     <OrderBox />
